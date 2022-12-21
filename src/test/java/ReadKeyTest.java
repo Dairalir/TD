@@ -1,8 +1,10 @@
 package test.java;
 
+import org.apache.commons.lang3.StringUtils;
 import org.germain.tool.ManaBox;
 import org.junit.Assert;
 import org.junit.Test;
+import tools.TransCoder;
 
 public class ReadKeyTest {
     @Test
@@ -15,4 +17,22 @@ public class ReadKeyTest {
         Assert.assertEquals("La librairie de décryptage est mal installée",keyDecrypted, ManaBox.decrypt(keyCrypted));
 
     }
+
+    @Test
+    public void lissageTest(){
+        String msg = "éééçç";
+        String lissage = StringUtils.stripAccents(msg);
+        System.out.println(lissage);
+    }
+
+    @Test
+    public void createMapTest() {
+        String testGermain = "6lUjKOzUj4e/Gelw9c6sDLqHniwulClN6XSayZ+HRF/kbZx+CMf95jxrhm4YFSY26OnxVlsrzGkO00IMeAFs3g==";
+        TransCoder transcodeTest = new TransCoder(testGermain);
+        Assert.assertNotNull(transcodeTest.getEncode());
+        System.out.println(transcodeTest.getEncode().toString());
+        Assert.assertNotNull(transcodeTest.getDecode());
+        System.out.println(transcodeTest.getDecode().toString());
+    }
 }
+
