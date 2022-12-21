@@ -34,5 +34,20 @@ public class ReadKeyTest {
         Assert.assertNotNull(transcodeTest.getDecode());
         System.out.println(transcodeTest.getDecode().toString());
     }
+
+    @Test
+    public void testEncode(){
+        String keyCrypted = "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
+        String msg = "Salut";
+        TransCoder test = new TransCoder(keyCrypted);
+        System.out.println(test.encode(msg));
+    }
+    @Test
+    public void testDecode(){
+        String keyCrypted = "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
+        String msg = "BYAPASBNBGAPASBGASBNASAFBHBGBNAHAJBNAZAFBLADBNAPASASAJAMAPADBNBJBJBJ";
+        TransCoder test = new TransCoder(keyCrypted);
+        System.out.println(test.decode(msg));
+    }
 }
 
