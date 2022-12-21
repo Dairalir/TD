@@ -3,26 +3,34 @@ package model;
 
 import tools.TransCoder;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Message {
-    public boolean encoded() {
-        String keyCrypted = "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
-        Scanner sc = new Scanner(System.in);
-        TransCoder tc = new TransCoder(keyCrypted);
-        System.out.println("Entrez votre message");
-        String msg = sc.nextLine();
+    private Boolean encoded;
+    private List<String> msgClear;
+    private List<String> msgEncode;
+    private Path msgClearPath;
+    private Path msgEncodedPath;
+    private Path keyPath;
+    private String key;
+    private TransCoder transCoder;
 
-        Boolean b1 = true;
-        Boolean b2 = false;
-        if(tc.decode(msg) == ){
-            b2 = true;
-            if(b1.equals(b2)){
-                System.out.println("Le message est encoder");
-            }
-        }else{
-            System.out.println("Le message n'est pas encoder");
-        }
+    public Message(Boolean encoded, Path msgClearPath,Path msgEncodedPath,Path keyPath) {
+        this.encoded = encoded;
+        this.msgClearPath = msgClearPath;
+        this.msgEncodedPath = msgEncodedPath;
+        this.keyPath = keyPath;
+        msgClear = new ArrayList<>();
+        msgEncode = new ArrayList<>();
+        this.key = this.generateKey();
+        this.transCoder = new TransCoder(key);
+
+    }
+    private String generateKey() {
+        return "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
     }
 }
 
