@@ -10,7 +10,6 @@ public class TransCoder {
     private Map<String,Character> decode = new HashMap<String,Character>();
 
 
-
     public TransCoder(String keyCrypted) {
         String key = ManaBox.decrypt(keyCrypted);
 //On parcours la clé decripter comme un tableau et on assigne
