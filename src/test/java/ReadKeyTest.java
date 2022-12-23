@@ -1,10 +1,16 @@
 package test.java;
 
+import model.Message;
 import org.apache.commons.lang3.StringUtils;
 import org.germain.tool.ManaBox;
 import org.junit.Assert;
 import org.junit.Test;
 import tools.TransCoder;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public class ReadKeyTest {
     @Test
@@ -14,12 +20,12 @@ public class ReadKeyTest {
         // La clé décryptée que nous devrions obtenir
         String keyDecrypted = "CFfrkowl.aDzyS:eHjsGPZgMApWvRYVmtnK!BuU IQiEXTxbqhLdNJO,'c";
         // le test d'égalité entre la clé attendue et la sortie de la méthode de la librairie. Si le décryptage ne fonctionne pas nous aurons le message définit ici
-        Assert.assertEquals("La librairie de décryptage est mal installée",keyDecrypted, ManaBox.decrypt(keyCrypted));
+        Assert.assertEquals("La librairie de décryptage est mal installée", keyDecrypted, ManaBox.decrypt(keyCrypted));
 
     }
 
     @Test
-    public void lissageTest(){
+    public void lissageTest() {
         String msg = "éééçç";
         String lissage = StringUtils.stripAccents(msg);
         System.out.println(lissage);
@@ -36,18 +42,28 @@ public class ReadKeyTest {
     }
 
     @Test
-    public void testEncode(){
+    public void testEncode() {
         String keyCrypted = "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
         String msg = "Salut";
         TransCoder test = new TransCoder(keyCrypted);
         System.out.println(test.encode(msg));
     }
+
     @Test
-    public void testDecode(){
+    public void testDecode() {
         String keyCrypted = "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
         String msg = "BYAPASBNBGAPASBGASBNASAFBHBGBNAHAJBNAZAFBLADBNAPASASAJAMAPADBNBJBJBJ";
         TransCoder test = new TransCoder(keyCrypted);
         System.out.println(test.decode(msg));
+    }
+
+    @Test
+    public void msgTestClear() throws IOException {
+        Path msgClearPath = Paths.get("C:\\Users\\daima\\IdeaProjects\\TD\\src\\input\\", "clear.txt");
+        Path msgEncodedPath = Paths.get("C:\\Users\\daima\\IdeaProjects\\TD\\src\\input\\", "encoded.txt");
+        Path msgKeyPath = Paths.get("C:\\Users\\daima\\IdeaProjects\\TD\\src\\input\\", "key.txt");
+        Message msgTest = new Message(false, msgClearPath, msgEncodedPath, msgKeyPath);
+        msgTest.readNwrite();
     }
 }
 
