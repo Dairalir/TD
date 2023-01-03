@@ -23,13 +23,11 @@ public class Message {
         msgClear = new ArrayList<>();
         msgEncoded = new ArrayList<>();
         this.key = this.generateKey();
-        System.out.println(this.key);
         this.transCoder = new TransCoder(key);
     }
     public void readNwrite() {
         if (encoded) {
             this.msgEncoded = this.lireFichier(msgEncodedPath);
-            System.out.println(msgEncoded.toString());
             this.msgClear = this.decode(this.msgEncoded);
             this.ecrireDansFichier(msgClearPath, msgClear);
         } else {

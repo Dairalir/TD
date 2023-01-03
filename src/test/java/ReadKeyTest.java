@@ -10,6 +10,7 @@ import tools.TransCoder;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 
 public class ReadKeyTest {
@@ -59,11 +60,24 @@ public class ReadKeyTest {
 
     @Test
     public void msgTestClear() throws IOException {
-        Path msgClearPath = Paths.get("C:\\Users\\daima\\IdeaProjects\\TD\\src\\input\\", "clear.txt");
-        Path msgEncodedPath = Paths.get("C:\\Users\\daima\\IdeaProjects\\TD\\src\\input\\", "encoded.txt");
-        Path msgKeyPath = Paths.get("C:\\Users\\daima\\IdeaProjects\\TD\\src\\input\\", "key.txt");
+        Path msgClearPath = Paths.get("/home/stagiaire/IdeaProjects/TD/src/input", "clear.txt");
+        Path msgEncodedPath = Paths.get("/home/stagiaire/IdeaProjects/TD/src/input", "encoded.txt");
+        Path msgKeyPath = Paths.get("/home/stagiaire/IdeaProjects/TD/src/input", "key.txt");
         Message msgTest = new Message(false, msgClearPath, msgEncodedPath, msgKeyPath);
         msgTest.readNwrite();
+    }
+    @Test
+    public void msgTestClea() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez le nom du fichier a encoder");
+        String msgClear = sc.nextLine();
+        System.out.println("Entrez le nom du fichier contenant la clé d'encodage");
+        String keyEncode = sc.nextLine();
+        Path msgClearPath = Paths.get("/home/stagiaire/IdeaProjects/TD/src/input", msgClear);
+        Path msgEncodedPath = Paths.get("/home/stagiaire/IdeaProjects/TD/src/input", "encoded.txt");
+        Path msgKeyPath = Paths.get("/home/stagiaire/IdeaProjects/TD/src/input", keyEncode);
+        Message msgEncoded = new Message(false, msgClearPath, msgEncodedPath, msgKeyPath);
+        msgEncoded.readNwrite();
     }
 }
 
